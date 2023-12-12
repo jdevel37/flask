@@ -21,7 +21,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: jdevel37/flask
-        tags: ${{ gitgub.shb}}
+        tags: ${{gitgub.shb}}
         registry: docker.io
         username: jdevel37
         password: dckr_pat_0GYOFYLghyBB7b06K2chHBZkWMQ
