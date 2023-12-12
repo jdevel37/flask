@@ -25,3 +25,10 @@ jobs:
         registry: docker.io
         username: jdevel37
         password: dckr_pat_0GYOFYLghyBB7b06K2chHBZkWMQ
+
+    - name: 'Deploy to Azure Web App'
+      uses: azure/webapps-deploy@v2
+      with:         
+       app-name: 'cdgithubaction31'
+       publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+       images: 'jdevel37/github-actions-app:${{ github.sha }}'
