@@ -20,7 +20,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: bit1010/flask
+        image: jdevel37/flask
         tags: ${{ github.sha }}
         registry: docker.io
         username: jdevel37
