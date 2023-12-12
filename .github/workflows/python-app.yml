@@ -2,28 +2,26 @@ name: Python application
  
 on:
   push:
-    branches: [ main ]
+    branches: [ python-ci-workflow ]
+  pull_request:
+    branches: [ python-ci-workflow ]
  
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.6', '3.8']
-        exclude:
-          - os: macos-latest
-            python-version: '3.8'
-          - os: windows-latest
-            python-version: '3.6'
- 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
-
+        python-version: "3.8"
     - name: Display Python version
-
       run: python -c "import sys; print(sys.version)"
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: jdevel37/flask
+        tags: v3, latest
+        registry: docker.io
+        username: jdevel37
+        password: dckr_pat_0GYOFYLghyBB7b06K2chHBZkWMQ
